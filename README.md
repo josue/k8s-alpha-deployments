@@ -1,6 +1,6 @@
 ### About Kubernetes Alpha Deployments
 
-Using Helm with Ambassador, you can generate routes for alpha deployments that are routed via CNAME `*.alpha.domain.com`
+Using Helm with Ambassador, you can generate routes for alpha deployments that are routed to your own CNAME (ie: `*.alpha`)
 
 Hence, developers can deploy their alpha build (app) to a k8s namespace (`alpha`) and then use this build to test their app before merging to the mainline repo.
 
