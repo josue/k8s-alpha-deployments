@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  app: {{ .Values.app }}
+  name: {{ include "alpha.name" . }}
+  namespace: {{ include "namespace" . }}
+  alpha.deploy: true
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v1
+      kind: Mapping
+      name: {{ include "alpha.name" . }}
+      host: {{ include "alpha.name" . }}.{{ include "cname" . }}
+      prefix: /
+      service: {{ include "alpha.name" . }}.{{ include "namespace" . }}:{{ .Values.port | default "80" }}
+spec:
+  selector:
+    app: {{ include "alpha.name" . }}
+  ports:
+  - protocol: TCP
+    port: {{ .Values.port | default "80" }}

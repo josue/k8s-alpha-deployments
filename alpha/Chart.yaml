@@ -1,0 +1,5 @@
+apiVersion: v1
+appVersion: "1.0"
+description: Alpha application deployments for developer testing
+name: alpha
+version: 0.1.0

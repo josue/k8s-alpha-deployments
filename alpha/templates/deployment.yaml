@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  app: {{ required "missing .Values.app" .Values.app }}
+  name: {{ include "alpha.name" . }}
+  namespace: {{ include "namespace" . }}
+  alpha.deploy: true
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ include "alpha.name" . }}
+    spec:
+      containers:
+      - name: httpd
+        image: "httpd"
+        ports:
+        - containerPort: 80
